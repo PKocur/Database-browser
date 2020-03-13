@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Database Browser</string>
+    <string name="title">Cat Browser</string>
+    <string name="cat_name">Name:</string>
+    <string name="cat_date">Date of birth:</string>
+    <string name="cat_breed">Breed:</string>
+    <string name="cat_male">Male</string>
+    <string name="cat_microchip">Microchipped</string>
+    <string name="cat_female">Female</string>
+    <string name="cat_submit">Add cat</string>
 </resources>
