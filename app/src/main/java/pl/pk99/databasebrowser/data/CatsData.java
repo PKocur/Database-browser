@@ -27,7 +27,6 @@ public class CatsData {
                     TABLE_ROW_BIRTH+ " DATE NOT NULL," +
                     TABLE_ROW_GENDER + " TEXT NOT NULL," +
                     TABLE_ROW_CHIP + " INTEGER NOT NULL" + ");";
-    //TODO - dorobić tutaj resztę pól
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + CatsData.TABLE_NAME;
@@ -67,16 +66,20 @@ public class CatsData {
         db.execSQL(query);
     }
 
-    public void delete(String name) {
+    public void delete(int id) {
+        String query = "DELETE FROM " + TABLE_NAME +
+                " WHERE " + TABLE_ROW_ID + " = " +
+                id + ";";
 
+        Log.i("delete() = ", query);
+        db.execSQL(query);
     }
 
     public Cursor selectAll() {
         Cursor cursor = db.rawQuery("SELECT *" + " FROM " + TABLE_NAME, null);
         return cursor;
     }
-
-    public Cursor searchByName(String name) {
+    public Cursor findByName(String name) {
         String query = "SELECT " + TABLE_ROW_ID + ", " + TABLE_ROW_NAME + ", " + TABLE_ROW_BREED +
                 ", " + TABLE_ROW_BIRTH +
                 ", " + TABLE_ROW_GENDER + ", " + TABLE_ROW_CHIP +

@@ -6,41 +6,67 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import pl.pk99.databasebrowser.data.CatsData;
+import pl.pk99.databasebrowser.data.CatsDataManager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    CatsData catsData;
+    CatsDataManager catsDataManager;
+    Button btnAddCat;
+    Button btnShowCats;
+
+    EditText etxtName;
+    EditText etxtBreed;
+    EditText etxtBirth;
+    RadioButton rbtnMale;
+    RadioButton rbtnFemale;
+    CheckBox cboxMicrochipped;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        catsData = new CatsData(this);
-        insertSampleData();
+        catsDataManager = new CatsDataManager(getApplicationContext());
+
+        etxtName = (EditText) findViewById(R.id.etxtName);
+        etxtBreed = (EditText) findViewById(R.id.etxtBreed);
+        etxtBirth = (EditText) findViewById(R.id.etxtBirth);
+
+        rbtnMale = (RadioButton) findViewById(R.id.rbtnMale);
+        rbtnFemale = (RadioButton) findViewById(R.id.rbtnFemale);
+
+        cboxMicrochipped = (CheckBox) findViewById(R.id.cboxMicrochipped);
+
+        btnAddCat = (Button) findViewById(R.id.addCatButton);
+        btnShowCats = (Button) findViewById(R.id.showCatsButton);
+
+        btnAddCat.setOnClickListener(this);
+        btnShowCats.setOnClickListener(this);
     }
 
     public void onClick (View view) {
-        showData(catsData.selectAll());
-    }
+        switch (view.getId()) {
+            case R.id.showCatsButton:
+                catsDataManager.showData();
+                break;
 
-    public void showData (Cursor cursor) {
-        Toast.makeText(getApplication().getBaseContext(), "Odczytuję dane z bazy!",
-                Toast.LENGTH_LONG).show();
-        while(cursor.moveToNext()) {
-            for(int x = 0; x < 6; x ++) {
-                Log.i("showData() nr " + (cursor.getPosition() + 1), cursor.getString(x));
-            }
+            case R.id.addCatButton:
+                String gender = rbtnMale.isChecked() ? "Male" : "Female";
+                byte microchipped = (byte)(cboxMicrochipped.isChecked() ? 1: 0);
+
+                catsDataManager.addCat(etxtName.getText().toString(), etxtBreed.getText().toString(),
+                        etxtBirth.getText().toString(), gender, microchipped);
+                break;
         }
-        cursor.close();
+
     }
 
-    public void insertSampleData () {
-        catsData.insert("Kotek", "Brytyjski", "2020-01-01", "Male", 1);
-        catsData.insert("Kotek 2", "Brytyjski 2", "2019-02-01", "Female", 0);
-        catsData.insert("Kotek 3", "Brytyjski", "2015-03-05", "Male", 1);
-    }
+
 }
