@@ -93,7 +93,7 @@
                 android:layout_marginTop="40dp"
                 android:ems="10"
                 android:hint="@string/cat_date"
-                android:inputType="text" />
+                android:inputType="date" />
 
             <RadioGroup
                 android:layout_width="wrap_content"

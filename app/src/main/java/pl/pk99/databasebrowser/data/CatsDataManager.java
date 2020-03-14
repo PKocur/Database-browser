@@ -31,12 +31,9 @@ public class CatsDataManager {
 
     public void addCat (String name, String breed, String date, String gender, byte microchipped) {
         catsData.insert(name, breed, date, gender, microchipped);
-
-        Toast.makeText(context, "Dodałem kota!",
-                Toast.LENGTH_LONG).show();
     }
 
-    void insertSampleData () {
+    private void insertSampleData() {
         catsData.insert("Pawełek", "Dachowiec", "2014-02-05", "Male", 0);
         catsData.insert("Koteł", "Brytyjski", "2019-07-12", "Female", 1);
         catsData.insert("Kicia", "Syjamski", "2016-09-26", "Female", 1);
