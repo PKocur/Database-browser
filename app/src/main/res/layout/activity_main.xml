@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="0"
+            android:backgroundTint="@color/colorLightGreen"
             android:onClick="onClick"
             android:text="@string/cat_submit"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -32,6 +33,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="97dp"
             android:layout_weight="0"
+            android:backgroundTint="@color/colorLightGreen"
             android:onClick="onClick"
             android:text="Show cats"
             app:layout_constraintBottom_toTopOf="@+id/addCatButton"
@@ -64,7 +66,7 @@
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textColor="@android:color/background_dark"
-                android:textSize="24sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <EditText
@@ -72,6 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:ems="10"
                 android:hint="@string/cat_name"
                 android:inputType="textPersonName"
@@ -82,6 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:ems="10"
                 android:hint="@string/cat_breed"
                 android:inputType="textPersonName" />
@@ -91,6 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:ems="10"
                 android:hint="@string/cat_date"
                 android:inputType="date" />
@@ -106,6 +111,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="40dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:text="@string/cat_male" />
 
                 <RadioButton
@@ -113,6 +120,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:buttonTint="@color/colorPrimaryDark"
                     android:text="@string/cat_female" />
 
             </RadioGroup>
@@ -122,6 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
+                android:backgroundTint="@color/colorPrimaryDark"
+                android:buttonTint="@color/colorPrimaryDark"
                 android:text="@string/cat_microchip" />
 
         </LinearLayout>

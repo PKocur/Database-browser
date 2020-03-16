@@ -2,6 +2,7 @@ package pl.pk99.databasebrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -39,14 +40,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         catsDataManager = new CatsDataManager(getApplicationContext());
 
-        etxtName = new TextFieldValidator(ValidationType.NOTEMPTY,
-                (EditText) findViewById(R.id.etxtName));
-        etxtBreed = new TextFieldValidator(ValidationType.NOTEMPTY,
-                (EditText) findViewById(R.id.etxtBreed));
-        etxtBirth = new TextFieldValidator(ValidationType.DATE,
-                (EditText) findViewById(R.id.etxtBirth));
+        etxtName = new TextFieldValidatorNotEmpty((EditText) findViewById(R.id.etxtName));
+        etxtBreed = new TextFieldValidatorNotEmpty((EditText) findViewById(R.id.etxtBreed));
+        etxtBirth = new TextFieldValidatorDate((EditText) findViewById(R.id.etxtBirth));
         InputDateTextFormatter.format(etxtBirth.getEditText());
-
 
         rbtnMale = (RadioButton) findViewById(R.id.rbtnMale);
         rbtnFemale = (RadioButton) findViewById(R.id.rbtnFemale);
@@ -86,13 +83,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    static boolean validateFields (TextFieldValidator... textFieldValidators) {
+    boolean validateFields(TextFieldValidator... textFieldValidators) {
         boolean value = true;
         for (TextFieldValidator textFieldValidator : textFieldValidators) {
             if(textFieldValidator.validate()) {
-                textFieldValidator.getEditText().setBackgroundColor(Color.WHITE);
+                textFieldValidator.getEditText().setBackgroundTintList
+                        (getApplicationContext().getColorStateList(R.color.colorPrimaryDark));
             } else {
-                textFieldValidator.getEditText().setBackgroundColor(Color.RED);
+                textFieldValidator.getEditText().setBackgroundTintList
+                        (getApplicationContext().getColorStateList(R.color.colorRed));
                 value = false;
             }
         }
