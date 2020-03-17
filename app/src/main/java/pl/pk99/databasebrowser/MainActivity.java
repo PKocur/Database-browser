@@ -3,6 +3,7 @@ package pl.pk99.databasebrowser;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Application;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         catsDataManager = new CatsDataManager(getApplicationContext());
+        catsDataManager.insertSampleData();
 
         etxtName = new TextFieldValidatorNotEmpty((EditText) findViewById(R.id.etxtName));
         etxtBreed = new TextFieldValidatorNotEmpty((EditText) findViewById(R.id.etxtBreed));
@@ -60,13 +62,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick (View view) {
         switch (view.getId()) {
             case R.id.showCatsButton:
-                catsDataManager.showData();
+                Intent intent = new Intent(this, ShowCatsActivity.class);
+                startActivity(intent);
+                //catsDataManager.showData();
                 break;
 
             case R.id.addCatButton:
                 if(validateFields(etxtName, etxtBreed, etxtBirth)) {
                     String gender = rbtnMale.isChecked() ? "Male" : "Female";
-                    byte microchipped = (byte) (cboxMicrochipped.isChecked() ? 1 : 0);
+                    String microchipped  = cboxMicrochipped.isChecked() ? "Yes" : "No";
 
                     catsDataManager.addCat(etxtName.getEditText().getText().toString(),
                             etxtBreed.getEditText().getText().toString(),

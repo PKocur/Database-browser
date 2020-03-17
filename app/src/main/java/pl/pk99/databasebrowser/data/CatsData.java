@@ -26,7 +26,7 @@ public class CatsData {
                     TABLE_ROW_BREED + " TEXT NOT NULL," +
                     TABLE_ROW_BIRTH+ " DATE NOT NULL," +
                     TABLE_ROW_GENDER + " TEXT NOT NULL," +
-                    TABLE_ROW_CHIP + " INTEGER NOT NULL" + ");";
+                    TABLE_ROW_CHIP + " TEXT NOT NULL" + ");";
 
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + CatsData.TABLE_NAME;
@@ -47,13 +47,12 @@ public class CatsData {
         }
     }
 
-    CatsData(Context context) {
+    public CatsData(Context context) {
         CatDataHelper catDataHelper = new CatDataHelper(context);
         db = catDataHelper.getWritableDatabase();
     }
 
-    void insert(String name, String breed, String date, String gender, int chip) {
-        Log.i("create() = ", SQL_CREATE_ENTRIES);
+    void insert(String name, String breed, String date, String gender, String chip) {
         String query = "INSERT INTO " + TABLE_NAME + " (" +
                 TABLE_ROW_NAME + ", " + TABLE_ROW_BREED + ", " +
                 TABLE_ROW_BIRTH + ", " +
@@ -61,7 +60,7 @@ public class CatsData {
                 "VALUES (" +
                 "'" + name + "'" + ", " + "'" + breed + "'" +
                 ", " + "'" + date + "'" +
-                ", " + "'" + gender + "', " + chip + ");";
+                ", " + "'" + gender + "', " + "'" + chip + "');";
         Log.i("insert() = ", query);
         db.execSQL(query);
     }
@@ -79,6 +78,7 @@ public class CatsData {
         Cursor cursor = db.rawQuery("SELECT *" + " FROM " + TABLE_NAME, null);
         return cursor;
     }
+
     public Cursor findByName(String name) {
         String query = "SELECT " + TABLE_ROW_ID + ", " + TABLE_ROW_NAME + ", " + TABLE_ROW_BREED +
                 ", " + TABLE_ROW_BIRTH +

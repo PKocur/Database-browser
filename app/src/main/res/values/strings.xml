@@ -8,4 +8,7 @@
     <string name="cat_microchip">Microchipped</string>
     <string name="cat_female">Female</string>
     <string name="cat_submit">Add cat</string>
+    <string name="cats">Cats:</string>
+    <string name="cat_row">ID : %1$o | Name: %2$s | Breed: %3$s | Birth date: %4$s | Gender: %5$s |
+        Microchipped: %6$s</string>
 </resources>
