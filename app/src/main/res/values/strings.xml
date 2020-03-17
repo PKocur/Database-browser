@@ -8,7 +8,12 @@
     <string name="cat_microchip">Microchipped</string>
     <string name="cat_female">Female</string>
     <string name="cat_submit">Add cat</string>
+    <string name="cat_added">Cat is added</string>
+    <string name="cat_error">Wrong data inputs</string>
     <string name="cats">Cats:</string>
     <string name="cat_row">ID : %1$o | Name: %2$s | Breed: %3$s | Birth date: %4$s | Gender: %5$s |
         Microchipped: %6$s</string>
+    <string name="back">Back</string>
+    <string name="one_cat">Show only one cat</string>
+    <string name="show">Show</string>
 </resources>

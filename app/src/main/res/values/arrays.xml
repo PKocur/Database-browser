@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="queries">
+        <item>All cats</item>
+        <item>Only cats with microchip</item>
+        <item>Only cats without microchip</item>
+        <item>Only males</item>
+        <item>Only females</item>
+    </string-array>
+</resources>

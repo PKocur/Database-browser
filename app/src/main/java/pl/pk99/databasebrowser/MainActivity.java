@@ -40,20 +40,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         catsDataManager = new CatsDataManager(getApplicationContext());
-        catsDataManager.insertSampleData();
 
         etxtName = new TextFieldValidatorNotEmpty((EditText) findViewById(R.id.etxtName));
         etxtBreed = new TextFieldValidatorNotEmpty((EditText) findViewById(R.id.etxtBreed));
         etxtBirth = new TextFieldValidatorDate((EditText) findViewById(R.id.etxtBirth));
         InputDateTextFormatter.format(etxtBirth.getEditText());
 
-        rbtnMale = (RadioButton) findViewById(R.id.rbtnMale);
-        rbtnFemale = (RadioButton) findViewById(R.id.rbtnFemale);
+        rbtnMale = findViewById(R.id.rbtnMale);
+        rbtnFemale = findViewById(R.id.rbtnFemale);
 
-        cboxMicrochipped = (CheckBox) findViewById(R.id.cboxMicrochipped);
+        cboxMicrochipped = findViewById(R.id.cboxMicrochipped);
 
-        btnAddCat = (Button) findViewById(R.id.addCatButton);
-        btnShowCats = (Button) findViewById(R.id.showCatsButton);
+        btnAddCat = findViewById(R.id.addCatButton);
+        btnShowCats = findViewById(R.id.showCatsButton);
 
         btnAddCat.setOnClickListener(this);
         btnShowCats.setOnClickListener(this);
@@ -62,29 +61,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick (View view) {
         switch (view.getId()) {
             case R.id.showCatsButton:
-                Intent intent = new Intent(this, ShowCatsActivity.class);
-                startActivity(intent);
-                //catsDataManager.showData();
+                showCats();
                 break;
 
             case R.id.addCatButton:
-                if(validateFields(etxtName, etxtBreed, etxtBirth)) {
-                    String gender = rbtnMale.isChecked() ? "Male" : "Female";
-                    String microchipped  = cboxMicrochipped.isChecked() ? "Yes" : "No";
-
-                    catsDataManager.addCat(etxtName.getEditText().getText().toString(),
-                            etxtBreed.getEditText().getText().toString(),
-                            etxtBirth.getEditText().getText().toString(), gender, microchipped);
-
-                    Toast.makeText(getApplicationContext(), "Dodałem kota!",
-                            Toast.LENGTH_LONG).show();
-                }
-                else {
-                    Toast.makeText(getApplicationContext(), "Nie dodałem kota!",
-                            Toast.LENGTH_LONG).show();
-                }
+                addCat();
                 break;
         }
+    }
+
+    void showCats () {
+        Intent intent = new Intent(this, ShowCatsActivity.class);
+        startActivity(intent);
+    }
+
+    void addCat () {
+        if(validateFields(etxtName, etxtBreed, etxtBirth)) {
+            String gender = rbtnMale.isChecked() ? "Male" : "Female";
+            String microchipped = cboxMicrochipped.isChecked() ? "Yes" : "No";
+            Cat cat = new Cat(etxtName.getEditText().getText().toString(),
+                    etxtBreed.getEditText().getText().toString(),
+                    etxtBirth.getEditText().getText().toString(), gender, microchipped);
+            catsDataManager.addCat(cat);
+            resetAddCatForm();
+
+            Toast.makeText(getApplicationContext(), R.string.cat_added,
+                    Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), R.string.cat_error,
+                    Toast.LENGTH_LONG).show();
+        }
+    }
+
+    void resetAddCatForm () {
+        etxtName.getEditText().setText(null);
+        etxtBreed.getEditText().setText(null);
+        etxtBirth.getEditText().setText(null);
+        rbtnMale.setEnabled(true);
+        cboxMicrochipped.setChecked(false);
     }
 
     boolean validateFields(TextFieldValidator... textFieldValidators) {

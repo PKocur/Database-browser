@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.io.File;
+
 public class CatsData {
     private SQLiteDatabase db;
     private static final int DATABASE_VERSION = 1;
@@ -47,9 +49,13 @@ public class CatsData {
         }
     }
 
-    public CatsData(Context context) {
+    CatsData(Context context) {
         CatDataHelper catDataHelper = new CatDataHelper(context);
         db = catDataHelper.getWritableDatabase();
+    }
+
+    boolean isDatabaseEmpty() {
+        return !selectAll().moveToFirst();
     }
 
     void insert(String name, String breed, String date, String gender, String chip) {
@@ -75,18 +81,26 @@ public class CatsData {
     }
 
     Cursor selectAll() {
-        Cursor cursor = db.rawQuery("SELECT *" + " FROM " + TABLE_NAME, null);
-        return cursor;
+        return db.rawQuery("SELECT *" + " FROM " + TABLE_NAME, null);
     }
 
-    public Cursor findByName(String name) {
+    Cursor findByGender(boolean isMale) {
+        String gender = isMale ? "Male" : "Female";
+        return findBy(TABLE_ROW_GENDER, gender);
+    }
+
+    Cursor findByChip(boolean hasChip) {
+        String chip = hasChip ? "Yes" : "No";
+        return findBy(TABLE_ROW_CHIP, chip);
+    }
+
+    private Cursor findBy(String tableRow, String arg) {
         String query = "SELECT " + TABLE_ROW_ID + ", " + TABLE_ROW_NAME + ", " + TABLE_ROW_BREED +
                 ", " + TABLE_ROW_BIRTH +
                 ", " + TABLE_ROW_GENDER + ", " + TABLE_ROW_CHIP +
-                " FROM " + TABLE_NAME + " WHERE " + TABLE_ROW_NAME + " = '" + name + "';";
-        Log.i("searchByName() = ", query);
-        Cursor cursor = db.rawQuery(query, null);
-        return cursor;
+                " FROM " + TABLE_NAME + " WHERE " + tableRow + " = '" + arg + "';";
+        Log.i("searchByChip() = ", query);
+        return db.rawQuery(query, null);
     }
 }
 
