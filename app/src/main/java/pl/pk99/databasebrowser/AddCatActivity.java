@@ -1,27 +1,18 @@
 package pl.pk99.databasebrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Application;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import pl.pk99.databasebrowser.data.CatsData;
 import pl.pk99.databasebrowser.data.CatsDataManager;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+//Klasa zarządza activity dodawania kotów
+public class AddCatActivity extends AppCompatActivity implements View.OnClickListener {
 
     CatsDataManager catsDataManager;
     Button btnAddCat;
@@ -37,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_cat);
 
         catsDataManager = new CatsDataManager(getApplicationContext());
 

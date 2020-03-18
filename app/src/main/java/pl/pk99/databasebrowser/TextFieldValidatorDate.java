@@ -6,6 +6,7 @@ import android.widget.EditText;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+//Klasa waliduje pole typu data (czy ma odpowiedni format)
 class TextFieldValidatorDate extends TextFieldValidator {
 
     TextFieldValidatorDate(EditText text) {

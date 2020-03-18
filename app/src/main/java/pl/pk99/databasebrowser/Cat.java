@@ -1,10 +1,11 @@
 package pl.pk99.databasebrowser;
 
+//Klasa kota, pomocnicza do wypisywania danych z bazy
 public class Cat {
     private int id;
     private String name, breed, gender, microchipped, birthDate;
 
-    public int getId() {
+    int getId() {
         return id;
     }
 
@@ -38,7 +39,7 @@ public class Cat {
         this.birthDate = birthDate;
     }
 
-    public Cat(String name, String breed, String birthDate, String gender, String microchipped) {
+    Cat(String name, String breed, String birthDate, String gender, String microchipped) {
         this.name = name;
         this.breed = breed;
         this.gender = gender;

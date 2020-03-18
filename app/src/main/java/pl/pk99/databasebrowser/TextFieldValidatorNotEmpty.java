@@ -6,6 +6,7 @@ import android.widget.EditText;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+//Klasa waliduje pole (czy nie jest puste)
 class TextFieldValidatorNotEmpty extends TextFieldValidator {
 
     TextFieldValidatorNotEmpty (EditText text) {

@@ -10,7 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".MainActivity">
+        android:background="@android:drawable/screen_background_dark"
+        android:backgroundTint="?android:attr/textColorPrimary"
+        tools:context=".AddCatActivity">
 
         <Button
             android:id="@+id/addCatButton"
@@ -19,7 +21,7 @@
             android:layout_margin="10dp"
             android:layout_marginBottom="5dp"
             android:layout_weight="0"
-            android:backgroundTint="@color/colorLightGreen"
+            android:backgroundTint="@color/colorLightBlue"
             android:onClick="onClick"
             android:text="@string/cat_submit"
             app:layout_constraintBottom_toTopOf="@+id/showCatsButton"
@@ -34,7 +36,7 @@
             android:layout_margin="10dp"
             android:layout_marginBottom="30dp"
             android:layout_weight="0"
-            android:backgroundTint="@color/colorLightGreen"
+            android:backgroundTint="@color/colorBlue"
             android:onClick="onClick"
             android:text="Show cats"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -47,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="50dp"
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="108dp"
             android:orientation="vertical"
@@ -60,10 +62,10 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title"
+                android:text="@string/app_name"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@android:color/background_dark"
+                android:textColor="@android:color/white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -72,31 +74,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorAccent"
                 android:ems="10"
                 android:hint="@string/cat_name"
                 android:inputType="textPersonName"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray" />
 
             <EditText
                 android:id="@+id/etxtBreed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorAccent"
                 android:ems="10"
                 android:hint="@string/cat_breed"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray" />
 
             <EditText
                 android:id="@+id/etxtBirth"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
-                android:backgroundTint="@color/colorPrimaryDark"
+                android:backgroundTint="@color/colorAccent"
                 android:ems="10"
                 android:hint="@string/cat_date"
-                android:inputType="date" />
+                android:inputType="date"
+                android:textColor="@android:color/white"
+                android:textColorHint="@android:color/darker_gray" />
 
             <RadioGroup
                 android:layout_width="wrap_content"
@@ -109,9 +117,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="0dp"
                     android:layout_marginTop="40dp"
-                    android:backgroundTint="@color/colorPrimaryDark"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:text="@string/cat_male" />
+                    android:backgroundTint="@color/colorPrimary"
+                    android:buttonTint="@color/colorAccent"
+                    android:text="@string/cat_male"
+                    android:textColor="@android:color/white" />
 
                 <RadioButton
                     android:id="@+id/rbtnFemale"
@@ -119,8 +128,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:backgroundTint="@color/colorPrimaryDark"
-                    android:buttonTint="@color/colorPrimaryDark"
-                    android:text="@string/cat_female" />
+                    android:buttonTint="@color/colorAccent"
+                    android:text="@string/cat_female"
+                    android:textColor="@android:color/white" />
 
             </RadioGroup>
 
@@ -130,8 +140,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:backgroundTint="@color/colorPrimaryDark"
-                android:buttonTint="@color/colorPrimaryDark"
-                android:text="@string/cat_microchip" />
+                android:buttonTint="@color/colorAccent"
+                android:text="@string/cat_microchip"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 

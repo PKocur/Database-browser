@@ -6,8 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import java.io.File;
-
+//Klasa operująca bezpośrednio na bazie danych za pomocą SQL
 public class CatsData {
     private SQLiteDatabase db;
     private static final int DATABASE_VERSION = 1;

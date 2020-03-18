@@ -1,39 +1,21 @@
 package pl.pk99.databasebrowser.data;
 
-import android.app.IntentService;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import pl.pk99.databasebrowser.Cat;
 
+//Klasa zarządzająca bazą danych
 public class CatsDataManager {
     private CatsData catsData;
-    private Context context;
 
     public CatsDataManager(Context context) {
-        this.context = context;
         catsData = new CatsData(context);
 
         if(catsData.isDatabaseEmpty())
             insertSampleData();
-    }
-
-    public void showData() {
-        Toast.makeText(context, "Odczytuję dane z bazy!",
-                Toast.LENGTH_LONG).show();
-
-        Cursor cursor = catsData.selectAll();
-        while (cursor.moveToNext()) {
-            for (int x = 0; x < 6; x++) {
-                Log.i("showData() nr " + (cursor.getPosition() + 1), cursor.getString(x));
-            }
-        }
-        cursor.close();
     }
 
     public List<Cat> getCats() {
@@ -61,10 +43,9 @@ public class CatsDataManager {
         return getCatsWithQuery(catsData.findByChip(true));
     }
 
-    public List<Cat> getCatsWithoutMicrochipped() {
+    public List<Cat> getCatsWithoutMicrochip() {
         return getCatsWithQuery(catsData.findByChip(false));
     }
-
 
     private List<Cat> getCatsWithQuery(Cursor cursor) {
         List<Cat> cats = new ArrayList<Cat>();
@@ -86,5 +67,7 @@ public class CatsDataManager {
         catsData.insert("Pawełek", "Dachowiec", "2014-02-05", "Male", "No");
         catsData.insert("Koteł", "Brytyjski", "2019-07-12", "Male", "Yes");
         catsData.insert("Igiełka", "Syjamski", "2016-09-26", "Female", "Yes");
+        catsData.insert("Pan Kot", "Brytyjski", "2018-05-11", "Male", "Yes");
+        catsData.insert("Lukrecja", "Dachowiec", "2017-11-12", "Female", "No");
     }
 }

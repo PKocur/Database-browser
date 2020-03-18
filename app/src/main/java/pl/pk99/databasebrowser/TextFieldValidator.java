@@ -2,6 +2,7 @@ package pl.pk99.databasebrowser;
 
 import android.widget.EditText;
 
+//Klasa bazowa dla typów walidacji pól
 abstract class TextFieldValidator {
     private EditText editText;
 

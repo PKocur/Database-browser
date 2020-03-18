@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">Database Browser</string>
-    <string name="title">Cat Browser</string>
+    <string name="app_name">Cat Browser</string>
     <string name="cat_name">Name:</string>
     <string name="cat_date">Date of birth:</string>
     <string name="cat_breed">Breed:</string>

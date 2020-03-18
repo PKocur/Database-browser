@@ -2,7 +2,6 @@ package pl.pk99.databasebrowser;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -13,12 +12,12 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
 import pl.pk99.databasebrowser.data.CatsDataManager;
 
+//Klasa zarządza activity wyświetlania kotów
 public class ShowCatsActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener,
         View.OnClickListener {
 
@@ -73,13 +72,14 @@ public class ShowCatsActivity extends AppCompatActivity implements AdapterView.O
 
             row.setText(getString(R.string.cat_row, cat.getId(), cat.getName(), cat.getBreed(), cat.getBirthDate(),
                     cat.getGender(), cat.getMicrochipped()));
-            row.setTextColor(Color.BLACK);
+            row.setTextColor(Color.WHITE);
             row.setTextSize(17);
 
             TextView rowSeparator = new TextView(getApplicationContext());
             rowSeparator.setLayoutParams(params);
 
             linearLayout.addView(rowSeparator);
+            rowSeparator.setTextColor(Color.WHITE);
             rowSeparator.setText("---------------------------------------------------");
 
             if (cboxShowOneCat.isChecked()) break;
@@ -88,6 +88,7 @@ public class ShowCatsActivity extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View arg1, int position, long id) {
+        ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
         queryPosition = position;
     }
 
@@ -107,7 +108,7 @@ public class ShowCatsActivity extends AppCompatActivity implements AdapterView.O
                         showCats(catsDataManager.getCatsMicrochipped());
                         break;
                     case 2:
-                        showCats(catsDataManager.getCatsWithoutMicrochipped());
+                        showCats(catsDataManager.getCatsWithoutMicrochip());
                         break;
                     case 3:
                         showCats(catsDataManager.getCatsMale());
